@@ -27,7 +27,9 @@ self.addEventListener("activate", event => {
         caches.keys()
         .then(keyList => {
             let cacheKeeplist = keyList.filter(key => key.indexOf(APP_PREFIX));
+            // Only keep key's with the app's prefix
             cacheKeeplist.push(CACHE_NAME);
+            // Add it to the keeplist
             return Promise.all(keyList.map((key, i) => {
                 if (cacheKeeplist.indexOf(key) === -1) {
                     console.log("Deleting Cache: " + keyList[i]);
@@ -38,6 +40,7 @@ self.addEventListener("activate", event => {
     );
 });
 self.addEventListener("fetch", event => {
+    // Fetches back end data and stores it in cache
     console.log("Fetch Request: " + event.request.url);
     if (event.request.url.includes("/api/")) {
         event.respondWith(
@@ -52,6 +55,7 @@ self.addEventListener("fetch", event => {
                     })
                     .catch(err => cache.match(event.request));
             })
+            // Otherwise get from the cache
             .catch(err => console.log(err))
         );
         return;

@@ -1,6 +1,4 @@
 {
-    "name": "Prosperity",
-    "short-name": "Prosperity",
     "icons": [{
             "src": "icons/icon-512x512.png",
             "sizes": "512x512",
@@ -41,8 +39,10 @@
             "type": "image/png"
         }
     ],
+    "name": "Prosperity",
+    "short-name": "Prosperity",
     "theme_color": "#ffffff",
-    "background_color": "#000000",
+    "background_color": "#01579b",
     "start_url": "./index.html",
     "display": "standalone",
     "orientation": "portrait",
