@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const APP_PREFIX = "ProsperityApp-";
 const VERSION = "v01";
 const CACHE_NAME = APP_PREFIX + VERSION;
@@ -15,36 +13,60 @@ const FILES_TO_CACHE = [
     "./icons/icon-144x144.png",
     "./icons/icon-512x512.png"
 ];
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+        .then(cache => {
+            console.log("Installing Cache: " + CACHE_NAME);
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
+});
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys()
+        .then(keyList => {
+            let cacheKeeplist = keyList.filter(key => key.indexOf(APP_PREFIX));
+            cacheKeeplist.push(CACHE_NAME);
+            return Promise.all(keyList.map((key, i) => {
+                if (cacheKeeplist.indexOf(key) === -1) {
+                    console.log("Deleting Cache: " + keyList[i]);
+                    return caches.delete(keyList[i]);
+                }
+            }));
+        })
+    );
+});
 self.addEventListener("fetch", event => {
-            console.log("Fetch Request: " + event.request.url);
-            if (event.request.url.includes("/api/")) {
-                event.respondWith(
-                    caches.open(DATA_CACHE_NAME)
-                    .then(cache => {
-                        return fetch(event.request)
-                            .then(response => {
-                                if (response.status === 200) {
-                                    cache.put(event.request.url, response.clone());
-                                }
-                                return response;
-                            })
-                            .catch(err => cache.match(event.request));
+    console.log("Fetch Request: " + event.request.url);
+    if (event.request.url.includes("/api/")) {
+        event.respondWith(
+            caches.open(DATA_CACHE_NAME)
+            .then(cache => {
+                return fetch(event.request)
+                    .then(response => {
+                        if (response.status === 200) {
+                            cache.put(event.request.url, response.clone());
+                        }
+                        return response;
                     })
-                    .catch(err => console.log(err))
-                );
-                return;
-            }
-            event.respondWith(
-                fetch(event.request)
-                .catch(() => {
-                    return caches.match(event.request)
-                        .then(response => {
-                            if (response) {
-                                return response;
-                            } else if (event.request.headers.get("accept").includes("text/html")) {
-                                return caches.match("/index.html");
-                            }
-                        })
+                    .catch(err => cache.match(event.request));
+            })
+            .catch(err => console.log(err))
+        );
+        return;
+    }
+    event.respondWith(
+        fetch(event.request)
+        .catch(() => {
+            return caches.match(event.request)
+                .then(response => {
+                    if (response) {
+                        return response;
+                    } else if (event.request.headers.get("accept").includes("text/html")) {
+                        return caches.match("/index.html");
+                    }
                 })
-            );
-        }
+        })
+    );
+});
