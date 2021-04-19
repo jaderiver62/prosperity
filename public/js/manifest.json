@@ -42,7 +42,7 @@
         }
     ],
     "theme_color": "#ffffff",
-    "background_color": "E0CCCC",
+    "background_color": "#000000",
     "start_url": "./index.html",
     "display": "standalone",
     "orientation": "portrait",
