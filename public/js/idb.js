@@ -1,15 +1,13 @@
 // IndexedDB initialization
 
-const {
-    response
-} = require("express");
+
 
 let database;
 
 const request = indexedDB.open("prosperity_app", 1);
 
 request.onupgradeneeded = event => {
-    database = event.target.result;
+    const database = event.target.result;
     database.createObjectStore("prosperity_transaction", {
         autoIncrement: true
     });
