@@ -13,32 +13,6 @@ const FILES_TO_CACHE = [
     "./icons/icon-144x144.png",
     "./icons/icon-512x512.png"
 ];
-self.addEventListener("install", event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-        .then(cache => {
-            console.log("Installing Cache: " + CACHE_NAME);
-            return cache.addAll(FILES_TO_CACHE);
-        })
-    );
-});
-self.addEventListener("activate", event => {
-    event.waitUntil(
-        caches.keys()
-        .then(keyList => {
-            let cacheKeeplist = keyList.filter(key => key.indexOf(APP_PREFIX));
-            // Only keep key's with the app's prefix
-            cacheKeeplist.push(CACHE_NAME);
-            // Add it to the keeplist
-            return Promise.all(keyList.map((key, i) => {
-                if (cacheKeeplist.indexOf(key) === -1) {
-                    console.log("Deleting Cache: " + keyList[i]);
-                    return caches.delete(keyList[i]);
-                }
-            }));
-        })
-    );
-});
 self.addEventListener("fetch", event => {
     // Fetches back end data and stores it in cache
     console.log("Fetch Request: " + event.request.url);
@@ -71,6 +45,32 @@ self.addEventListener("fetch", event => {
                         return caches.match("/index.html");
                     }
                 })
+        })
+    );
+});
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+        .then(cache => {
+            console.log("Installing Cache: " + CACHE_NAME);
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
+});
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys()
+        .then(keyList => {
+            let cacheKeeplist = keyList.filter(key => key.indexOf(APP_PREFIX));
+            // Only keep key's with the app's prefix
+            cacheKeeplist.push(CACHE_NAME);
+            // Add it to the keeplist
+            return Promise.all(keyList.map((key, i) => {
+                if (cacheKeeplist.indexOf(key) === -1) {
+                    console.log("Deleting Cache: " + keyList[i]);
+                    return caches.delete(keyList[i]);
+                }
+            }));
         })
     );
 });
