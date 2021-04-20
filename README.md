@@ -6,7 +6,7 @@
 
 ## Description
 
-This project was created to provide a simple dashboard application for tracking funds through incoming and outcoming transactions. Prosperity can be used privately and offline on your PC following the steps in our [usage](#usage) section, or directly at our [webpage - https://serene-everglades-38825.herokuapp.com/](https://serene-everglades-38825.herokuapp.com/).   
+This project was created to provide a simple dashboard application for tracking funds through incoming and outcoming transactions. Prosperity can be used privately and offline on your PC following the steps in our [usage](#usage) section, or directly at our [webpage](https://serene-everglades-38825.herokuapp.com/).   
 
 The application provides a working total for the funds and a table for all transactions.  Overall fund trends are graphed to create a visual for changes over time.
 
@@ -16,7 +16,7 @@ Finally, the Prosperity application also has the capability to function even whe
 
 Project Link: 
 
-[Prosperity](https://serene-everglades-38825.herokuapp.com/)
+* [Prosperity - https://serene-everglades-38825.herokuapp.com/](https://serene-everglades-38825.herokuapp.com/)
 
 ---------------------------------------
 
