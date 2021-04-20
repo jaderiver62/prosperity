@@ -36,7 +36,7 @@ Project Link:
 To build the application on your own PC, you must have [Node.js]("https://nodejs.org/") and [npm]("https://www.npmjs.com/") installed first.  First clone our repo, then navigate to the folder in your command line/Git Bash terminal.  Once there, run `npm install`, then `npm start`.  If everything went ok, you should see a message announcing your connection to the localhost!  To access the app simply go to [localhost:3001](http://localhost:3001/) in your web browser.
 
 
-![Project Screenshot]("/images/screenshot.png")
+![Project Screenshot]("/public/images/screenshot.png")
 
 
 ---------------------------------------
