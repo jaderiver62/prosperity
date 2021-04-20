@@ -36,7 +36,7 @@ Project Link:
 To build the application on your own PC, you must have [Node.js]("https://nodejs.org/") and [npm]("https://www.npmjs.com/") installed first.  First clone our repo, then navigate to the folder in your command line/Git Bash terminal.  Once there, run `npm install`, then `npm start`.  If everything went ok, you should see a message announcing your connection to the localhost!  To access the app simply go to [localhost:3001](http://localhost:3001/) in your web browser.
 
 
-![Project Screenshot](/public/images/screenshot.png)
+![Project Screenshot](public/images/screenshot.png)
 
 
 ---------------------------------------
@@ -44,20 +44,17 @@ To build the application on your own PC, you must have [Node.js]("https://nodejs
 Written using:
 
                     
-* [JavaScript]("https://www.javascript.com/")
+* JavaScript
    
-* [MongoDB]("https://www.mongodb.com/")
+* MongoDB
    
-* [IndexedDB]("https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API")
+* IndexedDB
    
-* [Node.js]("https://nodejs.org/")
+* Node.js
 
-* [npm]("https://www.npmjs.com/")
+* Express.js
 
-* [Express.js]("https://expressjs.com/")
-
-* [Heroku]("https://www.heroku.com/home")
-   
+* Heroku
 
 ---------------------------------------
 
